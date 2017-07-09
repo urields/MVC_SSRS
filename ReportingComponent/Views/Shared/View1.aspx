@@ -13,13 +13,13 @@
         void Page_Load(object sender, EventArgs e)
         {
 
-          /*  System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection();
+            System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection();
             conn.ConnectionString =
             "Data Source=melcsa.dynalias.net;" +
             "Initial Catalog=ITInventory;" +
             "User id=MelcsaDBUser;" +
             "Password=Melcsa-1234;";
-            conn.Open();*/
+            conn.Open();
 
             if (!IsPostBack)
             {
