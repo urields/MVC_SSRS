@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ITInventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="computerID" />
+          </Key>
+          <Property Name="computerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="Marca" Type="nvarchar(max)" />
+          <Property Name="Modelo" Type="nvarchar(max)" />
+          <Property Name="OS" Type="nvarchar(max)" />
+          <Property Name="RAM" Type="nvarchar(max)" />
+          <Property Name="HDD" Type="nvarchar(max)" />
+          <Property Name="Processor" Type="nvarchar(max)" />
+          <Property Name="NoSerie" Type="nvarchar(max)" />
+          <Property Name="NoSerieBat" Type="nvarchar(max)" />
+          <Property Name="NoSerieCarg" Type="nvarchar(max)" />
+          <Property Name="Proveedor" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="AcquisitionDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SoftPkg">
+          <Key>
+            <PropertyRef Name="SoftPkgID" />
+          </Key>
+          <Property Name="SoftPkgID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="computerID" Type="int" Nullable="false" />
+          <Property Name="SoftPkgName" Type="nvarchar(max)" />
+          <Property Name="SoftPkgDesc" Type="nvarchar(max)" />
+          <Property Name="LicenceType" Type="nvarchar(max)" />
+          <Property Name="LicenceKey" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Department" Type="int" />
+        </EntityType>
+        <Association Name="FK_dbo_Computer_dbo_User_userId">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SoftPkg_dbo_Computer_computerID">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SoftPkg" Type="Self.SoftPkg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="computerID" />
+            </Principal>
+            <Dependent Role="SoftPkg">
+              <PropertyRef Name="computerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITInventoryModelStoreContainer">
+          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SoftPkg" EntityType="Self.SoftPkg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Computer_dbo_User_userId" Association="Self.FK_dbo_Computer_dbo_User_userId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SoftPkg_dbo_Computer_computerID" Association="Self.FK_dbo_SoftPkg_dbo_Computer_computerID">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="SoftPkg" EntitySet="SoftPkg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITInventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="computerID" />
+          </Key>
+          <Property Name="computerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modelo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RAM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Processor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoSerie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoSerieBat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoSerieCarg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Proveedor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AcquisitionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Computer_dbo_User_userId" FromRole="Computer" ToRole="User" />
+          <NavigationProperty Name="SoftPkg" Relationship="Self.FK_dbo_SoftPkg_dbo_Computer_computerID" FromRole="Computer" ToRole="SoftPkg" />
+        </EntityType>
+        <EntityType Name="SoftPkg">
+          <Key>
+            <PropertyRef Name="SoftPkgID" />
+          </Key>
+          <Property Name="SoftPkgID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="computerID" Type="Int32" Nullable="false" />
+          <Property Name="SoftPkgName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoftPkgDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LicenceType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LicenceKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_dbo_SoftPkg_dbo_Computer_computerID" FromRole="SoftPkg" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="Int32" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_dbo_Computer_dbo_User_userId" FromRole="User" ToRole="Computer" />
+        </EntityType>
+        <Association Name="FK_dbo_Computer_dbo_User_userId">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SoftPkg_dbo_Computer_computerID">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SoftPkg" Type="Self.SoftPkg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="computerID" />
+            </Principal>
+            <Dependent Role="SoftPkg">
+              <PropertyRef Name="computerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITInventoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Computer" EntityType="Self.Computer" />
+          <EntitySet Name="SoftPkg" EntityType="Self.SoftPkg" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_dbo_Computer_dbo_User_userId" Association="Self.FK_dbo_Computer_dbo_User_userId">
+            <End Role="User" EntitySet="User" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SoftPkg_dbo_Computer_computerID" Association="Self.FK_dbo_SoftPkg_dbo_Computer_computerID">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="SoftPkg" EntitySet="SoftPkg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ITInventoryModelStoreContainer" CdmEntityContainer="ITInventoryEntities">
+          <EntitySetMapping Name="Computer">
+            <EntityTypeMapping TypeName="ITInventoryModel.Computer">
+              <MappingFragment StoreEntitySet="Computer">
+                <ScalarProperty Name="computerID" ColumnName="computerID" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="OS" ColumnName="OS" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="HDD" ColumnName="HDD" />
+                <ScalarProperty Name="Processor" ColumnName="Processor" />
+                <ScalarProperty Name="NoSerie" ColumnName="NoSerie" />
+                <ScalarProperty Name="NoSerieBat" ColumnName="NoSerieBat" />
+                <ScalarProperty Name="NoSerieCarg" ColumnName="NoSerieCarg" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="AcquisitionDate" ColumnName="AcquisitionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoftPkg">
+            <EntityTypeMapping TypeName="ITInventoryModel.SoftPkg">
+              <MappingFragment StoreEntitySet="SoftPkg">
+                <ScalarProperty Name="SoftPkgID" ColumnName="SoftPkgID" />
+                <ScalarProperty Name="computerID" ColumnName="computerID" />
+                <ScalarProperty Name="SoftPkgName" ColumnName="SoftPkgName" />
+                <ScalarProperty Name="SoftPkgDesc" ColumnName="SoftPkgDesc" />
+                <ScalarProperty Name="LicenceType" ColumnName="LicenceType" />
+                <ScalarProperty Name="LicenceKey" ColumnName="LicenceKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ITInventoryModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
