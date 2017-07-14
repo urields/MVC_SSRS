@@ -130,9 +130,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Computer.cs">
-      <DependentUpon>EDM1.tt</DependentUpon>
+      <DependentUpon>EDM2.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="RPTDataSet\DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EDM1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,6 +152,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EDM1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EDM2.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDM2.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDM2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDM2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDM2.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -172,16 +192,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="RPTDataSet\DataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet2.xsd</DependentUpon>
-    </Compile>
     <Compile Include="SoftPkg.cs">
-      <DependentUpon>EDM1.tt</DependentUpon>
+      <DependentUpon>EDM2.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>EDM1.tt</DependentUpon>
+      <DependentUpon>EDM2.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>EntityDataModel1.tt</DependentUpon>
@@ -256,6 +271,16 @@
       <DependentUpon>EDM1.edmx</DependentUpon>
       <LastGenOutput>EDM1.cs</LastGenOutput>
     </Content>
+    <Content Include="EDM2.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EDM2.edmx</DependentUpon>
+      <LastGenOutput>EDM2.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EDM2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EDM2.edmx</DependentUpon>
+      <LastGenOutput>EDM2.cs</LastGenOutput>
+    </Content>
     <Content Include="EntityDataModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EntityDataModel1.edmx</DependentUpon>
@@ -285,13 +310,12 @@
     <Content Include="EDM1.edmx.diagram">
       <DependentUpon>EDM1.edmx</DependentUpon>
     </Content>
-    <None Include="RPTDataSet\DataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="RPTDataSet\DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <EntityDeploy Include="EDM2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EDM2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EDM2.edmx.diagram">
+      <DependentUpon>EDM2.edmx</DependentUpon>
     </Content>
     <Content Include="RPTDataSet\DataSet2.xsc">
       <DependentUpon>DataSet2.xsd</DependentUpon>
@@ -303,6 +327,14 @@
     </None>
     <Content Include="RPTDataSet\DataSet2.xss">
       <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Content>
+    <None Include="RPTDataSet\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="RPTDataSet\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

@@ -13,13 +13,13 @@
         void Page_Load(object sender, EventArgs e)
         {
 
-            System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection();
+           /* System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection();
             conn.ConnectionString =
             "Data Source=melcsa.dynalias.net;" +
             "Initial Catalog=ITInventory;" +
             "User id=MelcsaDBUser;" +
             "Password=Melcsa-1234;";
-            conn.Open();
+            conn.Open();*/
 
             if (!IsPostBack)
             {
@@ -33,8 +33,7 @@
                     ReportingComponent.ITInventoryEntities itI = new ReportingComponent.ITInventoryEntities();
                     
                     users = dc.Users.OrderBy(a => a.UserId).ToList();
-                    computer = itI.Computer.OrderBy(x => x.userId).ToList();
-                   
+                    computer = itI.Computer.OrderBy(x => x.userId).ToList();                   
                    
                     ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/RPTReport/Report1.rdlc");
                     ReportViewer1.LocalReport.DataSources.Clear();
